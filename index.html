@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./public/style.css">
+    <script src="./public/main.js" defer></script>
+</head>
+
+<body>
+    <section class="container">
+        <div class="work--title">
+            <h2>견적서</h2>
+        </div>
+
+        <!--공사 추가 삭제 버튼-->
+        <div class="work--btns">
+            <input type="button" class="add-btn" value="공사추가">
+            <input type="button" class="sub-btn" value="공사삭제">
+        </div>
+
+        <!--수신인 날짜-->
+        <div class="work--to">
+            <label>수 신 인</label>
+            <input type="text" class="work-to">
+        </div>
+
+        <!--견적서 날짜-->
+        <div class="work--date">
+            <label>공 사 날 짜</label>
+            <input type="date" class="work-date">
+        </div>
+
+        <!--공사 작성란-->
+        <section class="work--area"></section>
+
+        <!--합계 금액-->
+        <div class="work--total">
+            <label>
+                합 계 금 액 (vat포함)
+            </label>
+            <input type="number" class="work-totalprice" value="0" readonly />
+        </div>
+
+        <!--저장 버튼-->
+        <div class="work--save">
+            <input type="button" value="미리보기">
+        </div>
+
+        <!--미리보기 영역-->
+        <div class="work--preview">
+            <div id="wrap">
+                <table id='tblExport'
+                    style="border-collapse: collapse;border:3px solid black;text-align: center;font-size:10px;">
+                </table>
+            </div>
+            <button id='btnExport' type='button'>저장하기</button>
+        </div>
+    </section>
+
+    <!--엑셀 다운 스트립트-->
+    <script>
+        const itoStr = (dateNum) => {
+            dateNum < 10 ? dateNum = '0' + dateNum : dateNum;
+            return dateNum.toString();
+        }
+
+        const exportBtn = document.querySelector('#btnExport');
+        const exportTable = document.querySelector('#tblExport');
+        exportBtn.addEventListener('click', e => {
+            var dt = new Date();
+            var year = itoStr(dt.getFullYear());
+            var month = itoStr(dt.getMonth() + 1);
+            var day = itoStr(dt.getDate());
+            var postfix = year + month + day; 
+            const fileName = `오렌지건축견적서_${postfix}.xls`;
+            const aTag = document.createElement('a');
+            const dataType = 'data:application/vnd.ms-excel';
+            const tableHTML = exportTable.outerHTML.replace(/ /g, '%20');
+            aTag.href = dataType + ', ' + tableHTML;
+            aTag.download = fileName;
+            aTag.click();
+            e.preventDefault();
+        });
+    </script>
+</body>
+
+</html>

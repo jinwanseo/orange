@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+body {
+    margin : 0;
+    padding : 5px;
+}
+
+.container { 
+    width : 500px;
+    border : 2px solid #b6b8c3;
+    padding : 15px;
+    border-radius: 5px;
+    margin : auto;
+}
+
+/* Title */
+.work--title {
+    display : flex;
+    justify-content: center;
+}
+
+.work--title h2 {
+    font-size : 23px;
+    padding :0;
+    margin : 5px;
+}
+
+/* Buttons */
+.work--btns {
+    display : flex;
+    justify-content: center;
+    margin : 5px auto 10px auto;
+}
+
+.work--btns input[type="button"] {
+    width : 150px;
+    padding : 6px 12px;
+    font-size : 18px;
+    font-weight: bold;
+    margin : 0 5px;
+    border-radius: 9px;
+    border: none;
+}
+
+.work--btns .add-btn {
+    background-color: #e8eaf6;
+}
+
+.work--btns .sub-btn {
+    background-color: #e3f2fd;
+}
+
+/* 수신인 */
+.work--to {
+    display: flex;
+    justify-content: space-around;
+    padding : 10px;
+}
+.work--to input[type="text"],
+.work--to label
+{
+    width :190px;
+    font-size : 16px;
+}
+.work--to label {
+    transform: translateY(15%);
+    font-weight: bold;
+}
+
+.work--to .work-to {
+    text-align : right;
+}
+
+/* Date */
+.work--date {
+    display: flex;
+    justify-content: space-around;
+    padding : 10px;
+}
+.work--date input[type="date"],
+.work--date label
+{
+    width :190px;
+    font-size : 16px;
+}
+.work--date label {
+    transform: translateY(15%);
+    font-weight: bold;
+}
+
+.work--date .work-date{
+    text-align : right;
+}
+
+/* Total Price */
+.work--total {
+    display :flex;
+    justify-content: space-around;
+    padding : 10px;
+}
+.work--total input[type="number"],
+.work--total label
+{
+    width :190px;
+    font-size : 16px;
+}
+.work--total label {
+    transform: translateY(15%);
+    font-weight: bold;
+}
+
+.work--total .work-totalprice {
+    text-align: right;
+}
+
+/* Save Button */
+.work--save {
+    display : flex;
+    justify-content: center;
+    margin : 9px 0;
+}
+
+.work--save input[type="button"] {
+    width : 310px;
+    border-radius: 7px;
+    padding : 6px 12px;
+    border : none;
+    background-color: #9fa8da;
+    font-weight: bold;
+    font-size : 18px;
+}
+
+/* Work Area */
+.work--area{
+    width : 100%;
+}
+
+.work--area .work--item { 
+    width : 100%;
+    margin : 5px 3px;
+    border : 1px solid #b6b8c3;
+    border-radius: 7px;
+    padding: 10px 5px;
+}
+
+.work--area .work--item input {
+    text-align: right;
+}
+
+.work--area table tr{
+    display : flex;
+    justify-content: space-around;
+}
+
+.work--area td {
+    padding : 3px;
+}
+
+.work--area label {
+    font-weight: bold;
+}
+
+.work--area td,
+.work--area input {
+    width : 190px;
+    font-size : 16px;
+}
+
+.work--area table:nth-child(odd) {
+    background-color : #e8eaf6
+}
+
+.work--area table:nth-child(even) {
+    background-color: #e3f2fd;
+}
+
+/* 미리보기 */
+.work--preview{
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#btnExport {
+    display : none;
+    margin : 8px 0;
+    padding: 6px 12px;
+}
+
+#btnExport.active {
+    display : inline-block;
+}
+
+
+/* 반응형 */
+@media screen and (max-width : 528px) {
+    .container {
+        width: 100%;
+        background-color: lightpink;
+    }
+    .work--area td,
+    .work--area input,
+    .work--total input[type="number"],
+    .work--total label {
+        width : 95%;
+        font-size : 16px;
+    }
+}
