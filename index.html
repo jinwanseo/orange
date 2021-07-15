@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./public/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
     <script src="./public/main.js" defer></script>
 </head>
 
@@ -57,7 +58,7 @@
                     style="border-collapse: collapse;border:3px solid black;text-align: center;font-size:10px;">
                 </table>
             </div>
-            <button id='btnExport' type='button'>저장하기</button>
+            <button id='btnExport' type='button' onclick="ExportExcel()">저장하기</button>
         </div>
     </section>
 
@@ -68,23 +69,17 @@
             return dateNum.toString();
         }
 
-        const exportBtn = document.querySelector('#btnExport');
-        const exportTable = document.querySelector('#tblExport');
-        exportBtn.addEventListener('click', e => {
+        const ExportExcel = () =>{
             var dt = new Date();
             var year = itoStr(dt.getFullYear());
             var month = itoStr(dt.getMonth() + 1);
             var day = itoStr(dt.getDate());
             var postfix = year + month + day; 
-            const fileName = `오렌지건축견적서_${postfix}.xls`;
-            const aTag = document.createElement('a');
-            const dataType = 'data:application/vnd.ms-excel';
-            const tableHTML = exportTable.outerHTML.replace(/ /g, '%20');
-            aTag.href = dataType + ', ' + tableHTML;
-            aTag.download = fileName;
-            aTag.click();
-            e.preventDefault();
-        });
+            const fileName = `오렌지건축견적서_${postfix}.xlsx`;
+
+            var wb = XLSX.utils.table_to_book(document.getElementById('tblExport'), { sheet: "오렌지건축견적서", raw: true });
+            XLSX.writeFile(wb, (fileName));
+        }
     </script>
 </body>
 
